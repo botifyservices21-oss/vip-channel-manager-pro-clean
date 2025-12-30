@@ -44,6 +44,9 @@ const createVipAccess = require("./modules/vip/access.js");
 // Crear bot ANTES de usarlo
 const bot = new Telegraf(BOT_TOKEN);
 bot.use(session());
+bot.start(async (ctx) => {
+  await ctx.reply("👋 Bot iniciado correctamente.\nUsa el menú o escribe /help");
+});
 
 const createAdminNotifier = require("./modules/notifications/admin-notify");
 const notifier = createAdminNotifier(bot, getSettings);
