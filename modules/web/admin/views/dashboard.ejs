@@ -1,0 +1,59 @@
+<%- include("layout", { token: token }); %>
+
+<h1>📊 Panel general</h1>
+
+<div class="row my-4">
+
+  <div class="col-md-3">
+    <div class="card shadow-sm">
+      <div class="card-body text-center">
+        <h3><%= totalSubs %></h3>
+        <p>Suscriptores activos</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card shadow-sm">
+      <div class="card-body text-center">
+        <h3>€ <%= totalRevenue %></h3>
+        <p>Ingresos últimos 30 días</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card shadow-sm">
+      <div class="card-body text-center">
+        <h3><%= plansCount %></h3>
+        <p>Planes creados</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="card shadow-sm">
+      <div class="card-body text-center">
+        <h3><%= subsCount %></h3>
+        <p>Total suscripciones</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<h3 class="mt-5">📈 Ingresos por plan</h3>
+<canvas id="chart1"></canvas>
+
+<script>
+const chart = new Chart(document.getElementById("chart1"), {
+  type: "bar",
+  data: {
+    labels: <%- JSON.stringify(plans.map(p => p.name)) %>,
+    datasets: [{
+      label: "Usuarios",
+      data: <%- JSON.stringify(plans.map(p => subs.filter(s => s.planId === p.id).length)) %>
+    }]
+  }
+});
+</script>

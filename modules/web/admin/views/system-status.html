@@ -1,0 +1,27 @@
+<%- include("layout.html") %>
+
+<h2 class="text-2xl font-bold mb-6">⚙️ Estado del Sistema</h2>
+
+<div class="space-y-4">
+
+  <div class="p-4 rounded-xl border 
+    <%= mongoStatus ? 'border-green-500 bg-green-900/20' : 'border-red-500 bg-red-900/20' %>">
+    <b>MongoDB:</b> <%= mongoStatus ? "🟢 Conectado" : "🔴 Error" %>
+  </div>
+
+  <div class="p-4 rounded-xl border 
+    <%= stripeConfigured ? 'border-green-500 bg-green-900/20' : 'border-red-500 bg-red-900/20' %>">
+    <b>Stripe:</b> <%= stripeConfigured ? "🟢 Clave configurada" : "🔴 No configurada" %>
+  </div>
+
+  <div class="p-4 rounded-xl border 
+    <%= webhookConfigured ? 'border-green-500 bg-green-900/20' : 'border-red-500 bg-red-900/20' %>">
+    <b>Webhook Stripe:</b> <%= webhookConfigured ? "🟢 Activo" : "🔴 Falta webhook secret" %>
+  </div>
+
+  <div class="p-4 rounded-xl border 
+    <%= tonConfigured ? 'border-green-500 bg-green-900/20' : 'border-red-500 bg-red-900/20' %>">
+    <b>TON:</b> <%= tonConfigured ? "🟢 Llave configurada" : "🔴 No configurado" %>
+  </div>
+
+</div>
