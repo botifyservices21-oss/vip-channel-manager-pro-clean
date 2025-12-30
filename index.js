@@ -1889,12 +1889,3 @@ app.get("/dashboard/user/billing", async (req, res) => {
       .send("The billing portal could not be opened.");
   }
 });
-
-
-/* ======================================================================
-   INICIAR SERVIDOR EXPRESS
-====================================================================== */
-app.listen(PORT, () => {
-  console.log(`🌍 Servidor Express activo en puerto ${PORT}`);
-});
-
