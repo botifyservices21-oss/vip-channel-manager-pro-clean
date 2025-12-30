@@ -86,32 +86,28 @@ if (!BOT_TOKEN || BOT_TOKEN === "PON_AQUI_TU_TOKEN") {
 // CONFIG
 // =============================
 const PORT = process.env.PORT || 3000;
-
+app.listen(PORT, () => {
+  console.log(`🌍 Express server running on port ${PORT}`);
+});
 (async () => {
   try {
     await connectDB();
     console.log("✅ MongoDB connected");
 
-    await registerCommands(bot);
+    registerCommands(bot);
     console.log("✅ Bot commands registered");
 
-    await bot.launch({
-      dropPendingUpdates: true
-    });
+    await bot.launch({ dropPendingUpdates: true });
+    console.log("🤖 Bot running in LONG POLLING mode");
+
     process.once("SIGINT", () => bot.stop("SIGINT"));
     process.once("SIGTERM", () => bot.stop("SIGTERM"));
 
-    console.log("🤖 Bot running in LONG POLLING mode");
-
-    app.listen(PORT, () => {
-      console.log(`🌍 Express server running on port ${PORT}`);
-    });
-
   } catch (err) {
     console.error("❌ Fatal startup error:", err);
-    process.exit(1);
   }
 })();
+
 // ===============================
 // TON PAYMENT HANDLERS
 // ===============================
