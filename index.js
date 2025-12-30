@@ -47,10 +47,10 @@ bot.use(session());
 const createAdminNotifier = require("./modules/notifications/admin-notify");
 const notifier = createAdminNotifier(bot, getSettings);
 
-bot.on("message", () => {
+bot.on("message", async (ctx, next) => {
   console.log("📩 Telegram update recibido");
+  return next();
 });
-
 
 // 🔥 VIP ACCESS — Ahora sí, ya existe bot
 
