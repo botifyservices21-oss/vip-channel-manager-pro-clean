@@ -1,6 +1,7 @@
 // index.js — Dashboard SaaS Premium
 const { ObjectId } = require("mongodb");
 const express = require("express");
+const app = express();
 const { Telegraf, session } = require("telegraf");
 
 // Servicios Mongo
@@ -130,11 +131,6 @@ bot.action(/^TON_CONFIRM_(.+)$/, async (ctx) => {
 });
 
 
-// =============================
-// EXPRESS APP
-// =============================
-const app = express();
-
 // TON Payments
 const {
   startTonPaymentForPlan,
@@ -154,10 +150,6 @@ app.get("/", (req, res) => res.status(200).send("OK"));
 // 🔽 SOLO DESPUÉS JSON PARA EL DASHBOARD
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-
-// Health check
-app.get("/", (req, res) => res.status(200).send("OK"));
 
 /* ================================================================
    ADMIN DASHBOARD (Diseño SaaS Premium)
